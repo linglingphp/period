@@ -15,8 +15,9 @@ Route::get('/', function () {
 
 Route::group('api', function(){
 
-    //认证模块
-    Route::post('auth', 'auth/AuthController/auth');
+    
+    Route::post('auth', 'auth/AuthController/auth');//认证模块
+    Route::post('member/enroll', 'member/EnrollController/enroll');
 
 })->pattern([
     'id'       => '\d+',

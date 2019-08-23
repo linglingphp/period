@@ -20,21 +20,17 @@ class TokenController extends Controller
      * 验证token
      * @return array|bool
      */
-    public static function verifyToken($brand_id = 0)
+    public static function verifyToken()
     {
         $token = Request::header('token');
         if (empty($token)) {
             return false;
         }
-        $token_arr = explode(':', $token);
-     
         $info = Cache::get($token);
         if (empty($info)) {
             return false;//校验失败
         }
 
-        Cache::handler()->expire($token, 60 * 60 * 2);
-        
         return $info;
     }
 

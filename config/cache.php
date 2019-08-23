@@ -14,12 +14,30 @@
 // +----------------------------------------------------------------------
 
 return [
+    // // 驱动方式
+    // 'type'   => 'File',
+    // // 缓存保存目录
+    // 'path'   => '',
+    // // 缓存前缀
+    // 'prefix' => '',
+    // // 缓存有效期 0表示永久缓存
+    // 'expire' => 0,
     // 驱动方式
-    'type'   => 'File',
+    'type'   => 'complex',
     // 缓存保存目录
     'path'   => '',
     // 缓存前缀
     'prefix' => '',
     // 缓存有效期 0表示永久缓存
     'expire' => 0,
+    //redis配置
+    'default'	=>	[
+        'type'	=>	'redis',
+        'host'	=>	Env::get('redis.host'),
+        'port'=>Env::get('redis.port'),
+        'password'=>Env::get('redis.password'),
+        'select'=>Env::get('redis.db'),
+        'expire'=>  0, 
+        'prefix'=>  '',
+      ],    
 ];

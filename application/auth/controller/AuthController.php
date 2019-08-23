@@ -16,14 +16,14 @@ class AuthController extends Controller
         $params = Request::param();
         $validate = Validate::make([
             'username'  => 'require|min:3',
-            'passward'  => 'require|min:6'
+            'password'  => 'require|min:6'
         ]);
         if (!$validate->check($params)) {
             return renderData(100, $validate->getError());
         }
         //检查参数
         $member = Member::where('username',$params['username'])->find();
-        if (!empty($member->id) && password_verify($params['passward'], $member->password_hash)) {
+        if (!empty($member->id) && password_verify($params['password'], $member->password)) {
             $member->dt_login = date('Y-m-d H:i:s');
             $member->save();
         }else{
