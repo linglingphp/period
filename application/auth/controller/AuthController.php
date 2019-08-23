@@ -5,38 +5,32 @@ namespace app\auth\controller;
 use think\Controller;
 use app\auth\controller\TokenController;
 use app\common\model\Member;
-use app\common\model\MemberMp;
 use think\facade\Request;
+use think\Validate;
 
 class AuthController extends Controller
 {
    
-    public function auth($brand_id)
+    public function auth()
     {
         $params = Request::param();
-       
-        $openid = $params['openid'];
-        $where = [
-            'openid' => $openid
-        ];
-        $memberMp = MemberMp::where($where)->find();
-        if(!$memberMp->id){
-            $memberMp->brand_id = $brand_id;
-            $memberMp->openid = $openid;
-            $memberMp->dt_add = date('Y-m-d H:i:s');
-            $memberMp->save();
+        $validate = Validate::make([
+            'username'  => 'require|min:3',
+            'passward'  => 'require|min:6'
+        ]);
+        if (!$validate->check($params)) {
+            return renderData(100, $validate->getError());
         }
-
-        if($memberMp->member_id){
-            $member = Member::where(['id' => $memberMp->member_id])->find();
+        //检查参数
+        $member = Member::where('username',$params['username'])->find();
+        if (!empty($member->id) && password_verify($params['passward'], $member->password_hash)) {
             $member->dt_login = date('Y-m-d H:i:s');
             $member->save();
+        }else{
+            return renderData(100, '信息错误');
         }
-        
          //验证信息正确，生成用户token
         $member_info = [
-            'brand_id'       => $brand_id,
-            'member_mp_id'   => $memberMp->id,
             'member_id'      => isset($member->id)?$member->id:0,
             'nickname'       => isset($member->nickname)?$member->nickname:'', 
             'avatar'         => isset($member->avatar)?$member->avatar:'', 

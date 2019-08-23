@@ -13,10 +13,10 @@ Route::get('/', function () {
     return 'hello,visitor!';
 });
 
-Route::group('benifit/api', function(){
+Route::group('api', function(){
 
     //认证模块
-    Route::get('auth/:brand_id', 'auth/AuthController/auth');
+    Route::post('auth', 'auth/AuthController/auth');
 
 })->pattern([
     'id'       => '\d+',
