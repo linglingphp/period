@@ -2,9 +2,7 @@
 
 namespace app\member\controller;
 
-use think\Controller;
 use app\auth\controller\BaseController;
-use app\auth\controller\TokenController;
 use app\common\model\Member;
 use think\facade\Request;
 use think\Validate;
