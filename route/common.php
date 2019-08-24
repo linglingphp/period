@@ -9,6 +9,8 @@
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
 
+use think\facade\Request;
+
 Route::get('/', function () {
     return 'hello,visitor!';
 });

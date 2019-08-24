@@ -44,8 +44,8 @@ class AuthController extends Controller
         return renderData(0, $data);
     }
 
-    public function checkStatus($brand_id){
-        $info = TokenController::verifyToken($brand_id);
+    public function checkStatus(){
+        $info = TokenController::verifyToken();
         if (empty($info)) {
             header('HTTP/1.0 401 Unauthorized');
             header('Content-type: application/json');

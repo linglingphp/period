@@ -20,7 +20,7 @@ class BodyDailyController extends BaseController
         ];
         $bodydaily = BodyDaily::where($where)->find();
         
-        return renderData(0, $bodydaily);
+        return renderData(0, $bodydaily??[]);
     
     }
 
