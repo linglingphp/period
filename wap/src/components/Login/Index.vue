@@ -51,6 +51,7 @@ export default {
         password: this.loginForm.password
       }).then((response) => {
         const token = response.data.data.token
+        localStorage.JWT_TOKEN = token
         this.$cookies.set('token', token)
         this.linkTo()
       }).catch((error) => {

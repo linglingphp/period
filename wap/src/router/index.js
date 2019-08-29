@@ -7,6 +7,7 @@ import Login from '@/components/Login/Index'
 
 import Member from '@/components/Member/Info'
 import AddBodyDaily from '@/components/Activity/AddBodyDaily'
+import BodyDaily from '@/components/Activity/BodyDaily'
 
 import {
   checkLogin
@@ -40,6 +41,9 @@ export default new Router({
     },
     {
       path: '/member', component: Member
+    },
+    {
+      path: '/activity/bodyDailys', component: BodyDaily
     },
     {
       path: '/activity/bodyDaily', component: AddBodyDaily

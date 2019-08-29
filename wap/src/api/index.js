@@ -2,10 +2,11 @@ import axios from 'axios'
 import qs from 'qs'
 
 axios.interceptors.request.use(config => {
-  const token = 'bf_token:b86908fe8637df1312ab9f99690b5ce7'
-  // const token = VueCookies.get('token ')
-  // console.log(token)
+  const token = localStorage.JWT_TOKEN
+  console.log(token)
+  console.log('--------------')
   if (token) {
+    config.headers.Authorization = `token ${localStorage.JWT_TOKEN}`
     config.headers.token = token
   }
   return config
@@ -31,6 +32,10 @@ export const memberGet = (data) => {
 
 export const memberUpdate = (data) => {
   return axios.post(`/api/member`, qs.stringify(data))
+}
+
+export const bodyDailyList = (data) => {
+  return axios.get(`/api/body/bodyDailys`)
 }
 
 export const bodyDailyGet = (data) => {

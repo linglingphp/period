@@ -27,17 +27,6 @@ FastClick.attach(document.body)
 
 Vue.config.productionTip = false
 
-Axios.interceptors.request.use(
-  config => {
-    if (localStorage.JWT_TOKEN) { // 判断是否存在token，如果存在的话，则每个http header都加上token
-      config.headers.Authorization = `token ${localStorage.JWT_TOKEN}`
-    }
-    return config
-  },
-  err => {
-    return Promise.reject(err)
-  }
-)
 /* eslint-disable no-new */
 new Vue({
   router,

@@ -7,6 +7,7 @@ Route::group('api', function(){
     
     Route::get('checkStatus', 'auth/AuthController/checkStatus');
 
+    Route::get('body/bodyDailys', 'member/BodyDailyController/list');
     Route::get('body/bodyDaily', 'member/BodyDailyController/get');
     Route::post('body/bodyDaily', 'member/BodyDailyController/edit');
     Route::get('member', 'member/IndexController/get');

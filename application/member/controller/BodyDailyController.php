@@ -10,6 +10,17 @@ use think\Validate;
 class BodyDailyController extends BaseController
 {
     
+    public function list()
+    {
+        $where = [
+            'member_id' => $this->member_id,
+        ];
+        $bodydaily = BodyDaily::where($where)->order('date', 'desc')->select()->toArray();
+        
+        return renderData(0, $bodydaily??[]);
+    
+    }
+
     public function get()
     {
         $params['date'] = Request::param('date', date('Y-m-d'));
