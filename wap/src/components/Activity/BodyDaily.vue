@@ -2,13 +2,22 @@
   <div class="hello">
     <p>{{ msg }}</p>
     <group title="您近期数据概览">
-      <cell v-for="(item, i) in logs" :key="i" :title="item.date" is-link  @click="linkTo(item.date)">
+      <cell v-for="(item, i) in logs" :key="i" :title="item.date" is-link  :link="{ path: 'bodyDaily?date='+item.date }" >
         <div class="badge-value">
-          <span class="vertical-middle">{{ item.weight}}斤-{{ item.spirit }}精力值</span>
-          <badge></badge>
+          <span class="vertical-middle">{{ item.weight}}斤-power:{{ item.spirit }}</span>
         </div>
       </cell>
     </group>
+    <tabbar>
+      <tabbar-item show-dot is-link :link="{ path: 'bodyDailys' }">
+        <img slot="icon" src="../../assets/logo-1.png">
+        <span slot="label">首页</span>
+      </tabbar-item>
+      <tabbar-item show-dot is-link :link="{ path: '../member' }">
+        <img slot="icon" src="../../assets/logo-1.png">
+        <span slot="label">我的</span>
+      </tabbar-item>
+    </tabbar>
   </div>
 </template>
 

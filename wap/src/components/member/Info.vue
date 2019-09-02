@@ -11,6 +11,16 @@
       </group>
       <x-button type="primary" class="@button-global-border-radius" v-on:click.native="submitData">完善信息</x-button>
     </div>
+    <tabbar>
+      <tabbar-item show-dot is-link :link="{ path: 'activity/bodyDailys' }">
+        <img slot="icon" src="../../assets/logo-1.png">
+        <span slot="label">首页</span>
+      </tabbar-item>
+      <tabbar-item show-dot is-link :link="{ path: '../member' }">
+        <img slot="icon" src="../../assets/logo-1.png">
+        <span slot="label">我的</span>
+      </tabbar-item>
+    </tabbar>
   </div>
 </template>
 

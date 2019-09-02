@@ -1,7 +1,9 @@
 <template>
   <div class="hello">
-    <p>{{ msg }}</p>
-    <div>
+    <div>{{ msg }}</div>
+    
+    <group>
+      <div>
       <group>
         <calendar title="日期" v-model="loginForm.date"></calendar>
         <x-input title="体重" v-model="loginForm.weight" text-align="right"></x-input>
@@ -21,11 +23,20 @@
       </group>
       <x-button type="primary" class="@button-global-border-radius" v-on:click.native="submitData">提交记录</x-button>
     </div>
+    </group>
+    <tabbar>
+      <tabbar-item show-dot is-link :link="{ path: 'bodyDailys' }">
+        <span class="el-icon-s-home" slot="label"></span>
+      </tabbar-item>
+      <tabbar-item show-dot is-link :link="{ path: '../member' }">
+        <span class="el-icon-s-custom" slot="label"></span>
+      </tabbar-item>
+    </tabbar>
   </div>
 </template>
 
 <script>
-import { Cell, XInput, Calendar, Radio, XButton, InlineXNumber, XTextarea } from 'vux'
+import { querystring, Cell, XInput, Calendar, Radio, XButton, InlineXNumber, XTextarea } from 'vux'
 import {
   bodyDailyGet,
   bodyDailyAdd
@@ -33,6 +44,7 @@ import {
 export default {
   name: 'bodyDaily',
   components: {
+    querystring,
     Cell,
     XInput,
     Calendar,
@@ -43,7 +55,7 @@ export default {
   },
   data () {
     return {
-      msg: '记录你今天的数据吧',
+      msg: '你今日份数据',
       loginForm: [],
       radio01: [{
         key: 'female',
@@ -58,8 +70,8 @@ export default {
     }
   },
   created () {
-    console.log('1111')
-    bodyDailyGet().then((response) => {
+    const date = this.$route.query['date']
+    bodyDailyGet(date).then((response) => {
       this.loginForm = response.data.data
       console.log(this.loginForm)
     }).catch((error) => {

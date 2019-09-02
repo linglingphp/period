@@ -39,7 +39,7 @@ export const bodyDailyList = (data) => {
 }
 
 export const bodyDailyGet = (data) => {
-  return axios.get(`/api/body/bodyDaily`)
+  return axios.get(`/api/body/bodyDaily?date=` + data)
 }
 
 export const bodyDailyAdd = (data) => {
