@@ -3,8 +3,6 @@ import qs from 'qs'
 
 axios.interceptors.request.use(config => {
   const token = localStorage.JWT_TOKEN
-  console.log(token)
-  console.log('--------------')
   if (token) {
     config.headers.Authorization = `token ${localStorage.JWT_TOKEN}`
     config.headers.token = token
@@ -12,6 +10,25 @@ axios.interceptors.request.use(config => {
   return config
 }, err => {
   return Promise.reject(err)
+})
+
+axios.interceptors.response.use(function (response) {
+  console.log(response)
+  if (response.data.errorCode === 10005) {
+    window.location.href = '#/login'
+  } else {
+    return response
+  }
+}, function (error) {
+  // 对响应错误做点什么
+  if (error.response.status === 401 && error.response.data.errorCode === 10004) {
+    setTimeout(_ => {
+      const url = location.href.indexOf('?') > -1 ? '&time=' + ((new Date()).getTime()) : '?time=' + ((new Date()).getTime())
+      window.location.href = location.href + url
+    }, 100)
+  } else {
+    return Promise.reject(error)
+  }
 })
 
 // 换取token

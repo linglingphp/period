@@ -3,9 +3,9 @@
     <div>{{ msg }}</div>
     
     <group>
-      <div>
+      <div class="form">
       <group>
-        <calendar title="日期" v-model="loginForm.date"></calendar>
+        <calendar title="日期" v-model="loginForm.date" @click.native="onChange" show-popup-header></calendar>
         <x-input title="体重" v-model="loginForm.weight" text-align="right"></x-input>
         <x-input title="精力值" v-model="loginForm.spirit" text-align="right"></x-input>
         <x-input title="体力值" v-model="loginForm.power" text-align="right" ></x-input>
@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { querystring, Cell, XInput, Calendar, Radio, XButton, InlineXNumber, XTextarea } from 'vux'
+import { Loading, Actionsheet, Toast, querystring, Cell, XInput, Calendar, Radio, XButton, InlineXNumber, XTextarea } from 'vux'
 import {
   bodyDailyGet,
   bodyDailyAdd
@@ -44,6 +44,9 @@ import {
 export default {
   name: 'bodyDaily',
   components: {
+    Loading,
+    Actionsheet,
+    Toast,
     querystring,
     Cell,
     XInput,
@@ -56,24 +59,13 @@ export default {
   data () {
     return {
       msg: '你今日份数据',
-      loginForm: [],
-      radio01: [{
-        key: 'female',
-        value: '小姐姐'
-      }, {
-        key: 'male',
-        value: '小哥哥'
-      }, {
-        key: 'scret',
-        value: '不告诉你'
-      }]
+      loginForm: []
     }
   },
   created () {
     const date = this.$route.query['date']
     bodyDailyGet(date).then((response) => {
       this.loginForm = response.data.data
-      console.log(this.loginForm)
     }).catch((error) => {
       console.log(error)
     })
@@ -92,13 +84,16 @@ export default {
         exercise: this.loginForm.exercise,
         food: this.loginForm.food
       }).then((response) => {
-        // this.linkTo()
+        window.location = '#/activity/bodyDailys'
       }).catch((error) => {
         console.log(error)
       })
     },
     linkTo () {
       window.location = '#/activity'
+    },
+    onChange (val) {
+      console.log('on change', val)
     }
   }
 }
@@ -120,5 +115,11 @@ li {
 }
 a {
   color: #42b983;
+}
+.weui-tabbar {
+  position: fixed !important;
+}
+.form {
+    margin-bottom: 100px;
 }
 </style>

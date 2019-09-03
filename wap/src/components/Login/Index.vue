@@ -50,6 +50,7 @@ export default {
         username: this.loginForm.username,
         password: this.loginForm.password
       }).then((response) => {
+        console.log(response)
         const token = response.data.data.token
         localStorage.JWT_TOKEN = token
         this.$cookies.set('token', token)
@@ -59,7 +60,7 @@ export default {
       })
     },
     linkTo () {
-      window.location = '#/member'
+      window.location = '#/activity/bodyDailys'
     }
   }
 }
