@@ -1,6 +1,5 @@
 <template>
   <div class="hello">
-    <p>{{ msg }}</p>
     <group title="您近期数据概览" class="form">
       <cell v-for="(item, i) in logs" :key="i" :title="item.date" is-link  :link="{ path: 'bodyDaily?date='+item.date }" >
         <div class="badge-value">

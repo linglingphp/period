@@ -1,39 +1,27 @@
 <template>
   <div class="hello">
-    <div class="msg">{{ msg }}</div>
-    
-    <group>
-      <div class="form">
-      <group>
+    <group :title="msg" class="form">
         <calendar title="日期" v-model="loginForm.date" @click.native="onChange" show-popup-header></calendar>
         <x-input title="体重" v-model="loginForm.weight" text-align="right"></x-input>
         <x-input title="精力" v-model="loginForm.spirit" text-align="right"></x-input>
         <x-input title="体力" v-model="loginForm.power" text-align="right"></x-input>
-        <x-input title="颜值" v-model="loginForm.beauty" text-align="right"></x-input>
-        <!-- <cell title="精力" :inline-desc="'分: '+loginForm.spirit" primary="content">
-          <range v-model="loginForm.spirit" :min="min" :max="max" :step="step"></range>
-        </cell>
-        <cell title="体力" :inline-desc="'分: '+loginForm.power" primary="content">
-          <range v-model="loginForm.power" :min="min" :max="max" :step="step"></range>
-        </cell>
-        <cell title="颜值" :inline-desc="'分: '+loginForm.beauty" primary="content">
-          <range v-model="loginForm.beauty" :min="min" :max="max" :step="step"></range>
-        </cell> -->
-        <x-input title="梦" v-model="loginForm.dream_type" text-align="right" ></x-input>
         <cell title="饮水量">
           <inline-x-number style="display:block;" v-model="loginForm.water" :min="1000" :step="100" width="50px" button-style="round"></inline-x-number>
         </cell>
-        <x-switch title="是否锻炼" v-model="loginForm.is_exercise"></x-switch>
-        <x-textarea title="锻炼" v-model="loginForm.exercise"></x-textarea>
-        <x-textarea title="食物" v-model="loginForm.food"></x-textarea>
+        <x-input title="食物" v-model="loginForm.food"></x-input>
+        <x-switch title="锻炼" v-model="loginForm.is_exercise"></x-switch>
+        <x-input title="锻炼项目" v-model="loginForm.exercise"></x-input>
+        <x-input title="梦" v-model="loginForm.dream_type" text-align="right" ></x-input>
+        <x-input title="颜值" v-model="loginForm.beauty" text-align="right"></x-input>
+        <x-switch title="痘痘" v-model="loginForm.is_pimple"></x-switch>
+        <x-switch title="大姨妈" v-model="loginForm.is_period"></x-switch>
         <cell title="便便次数">
           <inline-x-number style="display:block;" v-model="loginForm.shit_time" :min="0" width="50px" button-style="round"></inline-x-number>
         </cell>
         <x-input title="便便体验" v-model="loginForm.shit_type" text-align="right" ></x-input>
+        <x-textarea title="我还有话说" v-model="loginForm.item"></x-textarea>
+        <x-button type="primary" class="@button-global-border-radius" v-on:click.native="submitData">提交记录</x-button>
       </group>
-      <x-button type="primary" class="@button-global-border-radius" v-on:click.native="submitData">提交记录</x-button>
-    </div>
-    </group>
     <tabbar>
       <tabbar-item show-dot is-link :link="{ path: 'bodyDailys' }">
         <span class="el-icon-s-home" slot="label"></span>
@@ -71,7 +59,7 @@ export default {
   },
   data () {
     return {
-      msg: '你今日份数据',
+      msg: '每天改变一点点',
       min: 0,
       max: 120,
       step: 5,

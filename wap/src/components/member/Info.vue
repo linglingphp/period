@@ -1,13 +1,11 @@
 <template>
   <div class="hello">
-    <p>{{ msg }}</p>
-    <p>{{ desc }}</p>
     <div>
-      <group>
+      <group :title="msg">
         <x-input title="用户名" v-model="loginForm.username"></x-input>
         <x-input title="昵称" v-model="loginForm.name" ></x-input>
-        <radio title="性别" :options="radio01" :value="loginForm.sex" @on-change="change"></radio>
-        <calendar title="生日" v-model="loginForm.birthday"></calendar>
+        <selector v-model="loginForm.sex" title="性别" :options="plainList" ></selector>
+        <x-number title="生日" v-model="loginForm.age"></x-number>
       </group>
       <x-button type="primary" class="@button-global-border-radius" v-on:click.native="submitData">完善信息</x-button>
     </div>
@@ -23,7 +21,7 @@
 </template>
 
 <script>
-import { XInput, Calendar, Radio, XButton } from 'vux'
+import { Selector, XInput, XNumber, Radio, XButton } from 'vux'
 import {
   memberGet,
   memberUpdate
@@ -31,26 +29,17 @@ import {
 export default {
   name: 'member',
   components: {
+    Selector,
     XInput,
-    Calendar,
+    XNumber,
     Radio,
     XButton
   },
   data () {
     return {
-      msg: '欢迎来到了解你自己',
-      desc: '请完善信息',
+      msg: '让你更加了解你',
       loginForm: [],
-      radio01: [{
-        key: 'female',
-        value: '小姐姐'
-      }, {
-        key: 'male',
-        value: '小哥哥'
-      }, {
-        key: 'scret',
-        value: '不告诉你'
-      }]
+      plainList: [{key: 'female', value: '小姐姐'}, {key: 'male', value: '小哥哥'}, {key: 'secret', value: '秘密'}]
     }
   },
   created () {
@@ -72,7 +61,7 @@ export default {
       memberUpdate({
         username: this.loginForm.username,
         name: this.loginForm.name,
-        brithday: this.loginForm.brithday,
+        age: this.loginForm.age,
         sex: this.loginForm.sex
       }).then((response) => {
         this.linkTo()

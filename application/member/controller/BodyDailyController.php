@@ -51,6 +51,9 @@ class BodyDailyController extends BaseController
             'water', 
             'is_exercise', 
             'exercise', 
+            'is_pimple', 
+            'is_period', 
+            'item', 
             'food'
             ]);
         $validate = Validate::make([
