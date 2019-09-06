@@ -9,7 +9,7 @@
             <x-input title="密码" v-model="loginForm.password" type="password"></x-input>
         </group>
     </div>
-    <x-button type="primary" class="@button-global-border-radius" v-on:click.native="submitData">注册</x-button>
+    <x-button type="primary" class="@button-global-border-radius" v-on:click.native="submitData">登录</x-button>
   </div>
 </template>
 
@@ -28,8 +28,8 @@ export default {
   data () {
     return {
       loginForm: {
-        username: 'alice',
-        password: '111111'
+        username: '',
+        password: ''
       }
     }
   },

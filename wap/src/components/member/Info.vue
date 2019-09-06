@@ -8,6 +8,7 @@
         <x-number title="生日" v-model="loginForm.age"></x-number>
       </group>
       <x-button type="primary" class="@button-global-border-radius" v-on:click.native="submitData">完善信息</x-button>
+      <x-button type="primary" class="@button-default-bg-color" v-on:click.native="clearData">退出登录</x-button>
     </div>
     <tabbar>
       <tabbar-item show-dot is-link :link="{ path: 'activity/bodyDailys' }">

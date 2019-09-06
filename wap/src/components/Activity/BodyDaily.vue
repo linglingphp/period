@@ -37,7 +37,7 @@ export default {
   data () {
     return {
       msg: '你的数据',
-      today: '2019-09-02',
+      today: '',
       logs: {}
     }
   },
