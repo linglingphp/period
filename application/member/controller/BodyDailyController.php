@@ -30,7 +30,9 @@ class BodyDailyController extends BaseController
             'member_id' => $this->member_id,
         ];
         $bodydaily = BodyDaily::where($where)->find();
-        
+        if(isset($bodydaily['is_exercise'])){
+            $bodydaily['is_exercise'] = $bodydaily['is_exercise']?true:false;
+        }
         return renderData(0, $bodydaily??[]);
     
     }
@@ -42,10 +44,12 @@ class BodyDailyController extends BaseController
             'weight', 
             'spirit', 
             'power', 
+            'beauty', 
             'shit_time', 
             'shit_type', 
             'dream_type', 
             'water', 
+            'is_exercise', 
             'exercise', 
             'food'
             ]);
@@ -62,7 +66,7 @@ class BodyDailyController extends BaseController
             'member_id' => $this->member_id,
         ];
         $bodydaily = BodyDaily::where($where)->find();
-        
+        $params['is_exercise'] = $params['is_exercise']==='true'?1:0;
         $params['member_id'] = $this->member_id;
         $params['dt_edit'] = $params['dt_login'] = date('Y-m-d H:i:s') ;
         $params['ip'] = Request::ip();

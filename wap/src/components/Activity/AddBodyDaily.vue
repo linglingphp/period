@@ -1,19 +1,29 @@
 <template>
   <div class="hello">
-    <div>{{ msg }}</div>
+    <div class="msg">{{ msg }}</div>
     
     <group>
       <div class="form">
       <group>
         <calendar title="日期" v-model="loginForm.date" @click.native="onChange" show-popup-header></calendar>
         <x-input title="体重" v-model="loginForm.weight" text-align="right"></x-input>
-        <x-input title="精力值" v-model="loginForm.spirit" text-align="right"></x-input>
-        <x-input title="体力值" v-model="loginForm.power" text-align="right" ></x-input>
-        
+        <x-input title="精力" v-model="loginForm.spirit" text-align="right"></x-input>
+        <x-input title="体力" v-model="loginForm.power" text-align="right"></x-input>
+        <x-input title="颜值" v-model="loginForm.beauty" text-align="right"></x-input>
+        <!-- <cell title="精力" :inline-desc="'分: '+loginForm.spirit" primary="content">
+          <range v-model="loginForm.spirit" :min="min" :max="max" :step="step"></range>
+        </cell>
+        <cell title="体力" :inline-desc="'分: '+loginForm.power" primary="content">
+          <range v-model="loginForm.power" :min="min" :max="max" :step="step"></range>
+        </cell>
+        <cell title="颜值" :inline-desc="'分: '+loginForm.beauty" primary="content">
+          <range v-model="loginForm.beauty" :min="min" :max="max" :step="step"></range>
+        </cell> -->
         <x-input title="梦" v-model="loginForm.dream_type" text-align="right" ></x-input>
         <cell title="饮水量">
           <inline-x-number style="display:block;" v-model="loginForm.water" :min="1000" :step="100" width="50px" button-style="round"></inline-x-number>
         </cell>
+        <x-switch title="是否锻炼" v-model="loginForm.is_exercise"></x-switch>
         <x-textarea title="锻炼" v-model="loginForm.exercise"></x-textarea>
         <x-textarea title="食物" v-model="loginForm.food"></x-textarea>
         <cell title="便便次数">
@@ -36,7 +46,7 @@
 </template>
 
 <script>
-import { Loading, Actionsheet, Toast, querystring, Cell, XInput, Calendar, Radio, XButton, InlineXNumber, XTextarea } from 'vux'
+import { Range, InlineXSwitch, XSwitch, Loading, Actionsheet, Toast, querystring, Cell, XInput, Calendar, Radio, XButton, InlineXNumber, XTextarea } from 'vux'
 import {
   bodyDailyGet,
   bodyDailyAdd
@@ -44,6 +54,9 @@ import {
 export default {
   name: 'bodyDaily',
   components: {
+    Range,
+    InlineXSwitch,
+    XSwitch,
     Loading,
     Actionsheet,
     Toast,
@@ -59,6 +72,9 @@ export default {
   data () {
     return {
       msg: '你今日份数据',
+      min: 0,
+      max: 120,
+      step: 5,
       loginForm: []
     }
   },
@@ -81,7 +97,9 @@ export default {
         shit_type: this.loginForm.shit_type,
         dream_type: this.loginForm.dream_type,
         water: this.loginForm.water,
+        is_exercise: this.loginForm.is_exercise,
         exercise: this.loginForm.exercise,
+        beauty: this.loginForm.beauty,
         food: this.loginForm.food
       }).then((response) => {
         window.location = '#/activity/bodyDailys'

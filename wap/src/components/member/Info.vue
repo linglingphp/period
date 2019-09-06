@@ -13,12 +13,10 @@
     </div>
     <tabbar>
       <tabbar-item show-dot is-link :link="{ path: 'activity/bodyDailys' }">
-        <img slot="icon" src="../../assets/logo-1.png">
-        <span slot="label">首页</span>
+        <span class="el-icon-s-home" slot="label"></span>
       </tabbar-item>
       <tabbar-item show-dot is-link :link="{ path: '../member' }">
-        <img slot="icon" src="../../assets/logo-1.png">
-        <span slot="label">我的</span>
+        <span class="el-icon-s-custom" slot="label"></span>
       </tabbar-item>
     </tabbar>
   </div>

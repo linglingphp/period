@@ -1,21 +1,23 @@
 <template>
   <div class="hello">
     <p>{{ msg }}</p>
-    <group title="您近期数据概览">
+    <group title="您近期数据概览" class="form">
       <cell v-for="(item, i) in logs" :key="i" :title="item.date" is-link  :link="{ path: 'bodyDaily?date='+item.date }" >
         <div class="badge-value">
-          <span class="vertical-middle">{{ item.weight}}斤-power:{{ item.spirit }}</span>
+          <span class="vertical-middle"><span style='color:#67C23A;' v-if="item.is_exercise">运动</span><span style='color:#909399' v-else>废柴</span>,
+          <span style='color:#E6A23C;' v-if="item.weight >= 97">{{ item.weight}}斤</span><span v-else>{{ item.weight}}斤</span>,
+          <span style='color:#F56C6C;' v-if="item.spirit <= 65">精力:{{ item.spirit }}</span><span v-else>精力:{{ item.spirit }}</span>
+          </span>
         </div>
       </cell>
     </group>
+    <el-button class='addButton' type="primary" circle @click="linkTo(today)">记</el-button>
     <tabbar>
       <tabbar-item show-dot is-link :link="{ path: 'bodyDailys' }">
-        <img slot="icon" src="../../assets/logo-1.png">
-        <span slot="label">首页</span>
+        <span class="el-icon-s-home" slot="label"></span>
       </tabbar-item>
       <tabbar-item show-dot is-link :link="{ path: '../member' }">
-        <img slot="icon" src="../../assets/logo-1.png">
-        <span slot="label">我的</span>
+        <span class="el-icon-s-custom" slot="label"></span>
       </tabbar-item>
     </tabbar>
   </div>
@@ -36,21 +38,19 @@ export default {
   data () {
     return {
       msg: '你的数据',
+      today: '2019-09-02',
       logs: {}
     }
   },
   created () {
-    console.log('1111')
     bodyDailyList().then((response) => {
       this.logs = response.data.data
-      console.log(this.logs)
     }).catch((error) => {
       console.log(error)
     })
   },
   methods: {
     linkTo (date) {
-      console.log('1111')
       window.location = '#/activity/bodyDaily?date=' + date
     }
   }
@@ -73,5 +73,17 @@ li {
 }
 a {
   color: #42b983;
+}
+.addButton{
+  position: absolute;
+    display: flex;
+    bottom: 10%;
+    right: 0;
+}
+.weui-tabbar {
+  position: fixed !important;
+}
+.form {
+    margin-bottom: 100px;
 }
 </style>
