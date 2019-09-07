@@ -84,9 +84,10 @@ export default {
         is_exercise: this.loginForm.is_exercise,
         is_pimple: this.loginForm.is_pimple,
         is_period: this.loginForm.is_period,
-        is_study: this.loginForm.is_study,
+        is_study: this.loginForm.is_study, 
+        is_beauty: this.loginForm.is_beauty, 
         exercise: this.loginForm.exercise,
-        beauty: this.loginForm.beauty,
+        item: this.loginForm.item,
         food: this.loginForm.food
       }).then((response) => {
         window.location = '#/activity/bodyDailys'
