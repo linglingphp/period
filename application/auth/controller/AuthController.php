@@ -19,7 +19,7 @@ class AuthController extends Controller
             'password'  => 'require|min:6'
         ]);
         if (!$validate->check($params)) {
-            return renderData(100, $validate->getError());
+            return renderData(10005, $validate->getError());
         }
         //检查参数
         $member = Member::where('username',$params['username'])->find();
@@ -27,7 +27,7 @@ class AuthController extends Controller
             $member->dt_login = date('Y-m-d H:i:s');
             $member->save();
         }else{
-            return renderData(100, '信息错误');
+            return renderData(10005, '信息错误');
         }
          //验证信息正确，生成用户token
         $member_info = [

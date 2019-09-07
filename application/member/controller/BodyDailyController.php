@@ -32,6 +32,11 @@ class BodyDailyController extends BaseController
         $bodydaily = BodyDaily::where($where)->find();
         if(isset($bodydaily['is_exercise'])){
             $bodydaily['is_exercise'] = $bodydaily['is_exercise']?true:false;
+            $bodydaily['is_pimple'] = $bodydaily['is_pimple']?true:false;
+            $bodydaily['is_period'] = $bodydaily['is_period']?true:false;
+            $bodydaily['is_study'] = $bodydaily['is_study']?true:false;
+            $bodydaily['is_dream'] = $bodydaily['is_dream']?true:false;
+            $bodydaily['is_beauty'] = $bodydaily['is_beauty']?true:false;
         }
         return renderData(0, $bodydaily??[]);
     
@@ -47,12 +52,14 @@ class BodyDailyController extends BaseController
             'beauty', 
             'shit_time', 
             'shit_type', 
-            'dream_type', 
             'water', 
-            'is_exercise', 
             'exercise', 
+            'is_dream', 
+            'is_exercise', 
             'is_pimple', 
             'is_period', 
+            'is_study', 
+            'is_beauty', 
             'item', 
             'food'
             ]);
@@ -69,7 +76,12 @@ class BodyDailyController extends BaseController
             'member_id' => $this->member_id,
         ];
         $bodydaily = BodyDaily::where($where)->find();
-        $params['is_exercise'] = $params['is_exercise']==='true'?1:0;
+        $params['is_dream'] = (isset($params['is_dream'])&&$params['is_dream']==='true')?1:0;
+        $params['is_exercise'] = (isset($params['is_exercise'])&&$params['is_exercise']==='true')?1:0;
+        $params['is_pimple'] = (isset($params['is_pimple'])&&$params['is_pimple']==='true')?1:0;
+        $params['is_period'] = (isset($params['is_period'])&&$params['is_period']==='true')?1:0;
+        $params['is_study'] = (isset($params['is_study'])&&$params['is_study']==='true')?1:0;
+        $params['is_beauty'] = (isset($params['is_beauty'])&&$params['is_beauty']==='true')?1:0;
         $params['member_id'] = $this->member_id;
         $params['dt_edit'] = $params['dt_login'] = date('Y-m-d H:i:s') ;
         $params['ip'] = Request::ip();

@@ -10,19 +10,13 @@
       <x-button type="primary" class="@button-global-border-radius" v-on:click.native="submitData">完善信息</x-button>
       <x-button type="primary" class="@button-default-bg-color" v-on:click.native="clearData">退出登录</x-button>
     </div>
-    <tabbar>
-      <tabbar-item show-dot is-link :link="{ path: 'activity/bodyDailys' }">
-        <span class="el-icon-s-home" slot="label"></span>
-      </tabbar-item>
-      <tabbar-item show-dot is-link :link="{ path: '../member' }">
-        <span class="el-icon-s-custom" slot="label"></span>
-      </tabbar-item>
-    </tabbar>
+    <Foot></Foot>
   </div>
 </template>
 
 <script>
 import { Selector, XInput, XNumber, Radio, XButton } from 'vux'
+import Foot from '@/components/Foot'
 import {
   memberGet,
   memberUpdate
@@ -34,6 +28,7 @@ export default {
     XInput,
     XNumber,
     Radio,
+    Foot,
     XButton
   },
   data () {
@@ -69,6 +64,11 @@ export default {
       }).catch((error) => {
         console.log(error)
       })
+    },
+    clearData () {
+      localStorage.clear()
+      this.$cookies.remove('token')
+      window.location = '#/login'
     },
     linkTo () {
       window.location = '#/activity/bodyDaily'

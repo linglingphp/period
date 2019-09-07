@@ -11,18 +11,12 @@
       </cell>
     </group>
     <el-button class='addButton' type="primary" circle @click="linkTo(today)">记</el-button>
-    <tabbar>
-      <tabbar-item show-dot is-link :link="{ path: 'bodyDailys' }">
-        <span class="el-icon-s-home" slot="label"></span>
-      </tabbar-item>
-      <tabbar-item show-dot is-link :link="{ path: '../member' }">
-        <span class="el-icon-s-custom" slot="label"></span>
-      </tabbar-item>
-    </tabbar>
+    <Foot></Foot>
   </div>
 </template>
 
 <script>
+import Foot from '@/components/Foot'
 import { Badge, Group, Cell } from 'vux'
 import {
   bodyDailyList
@@ -30,6 +24,7 @@ import {
 export default {
   name: 'bodyDaily',
   components: {
+    Foot,
     Badge,
     Group,
     Cell

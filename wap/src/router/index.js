@@ -6,6 +6,7 @@ import Hello from '@/components/HelloWorld'
 import Login from '@/components/Login/Index'
 
 import Member from '@/components/Member/Info'
+import Foot from '@/components/Foot'
 import AddBodyDaily from '@/components/Activity/AddBodyDaily'
 import BodyDaily from '@/components/Activity/BodyDaily'
 
@@ -32,6 +33,9 @@ export default new Router({
           })
         }
       }
+    },
+    {
+      path: '/foot', component: Foot
     },
     {
       path: '/vue', component: Hello
