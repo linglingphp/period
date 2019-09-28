@@ -3,6 +3,9 @@
       <tabbar-item show-dot is-link :link="{ path: '/activity/bodyDailys' }">
         <span class="el-icon-s-home" slot="label"></span>
       </tabbar-item>
+      <tabbar-item show-dot is-link :link="{ path: '/statistic/power' }">
+        <span class="el-icon-s-data" slot="label"></span>
+      </tabbar-item>
       <tabbar-item show-dot is-link :link="{ path: '/member' }">
         <span class="el-icon-s-custom" slot="label"></span>
       </tabbar-item>

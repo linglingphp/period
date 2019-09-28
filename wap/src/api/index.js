@@ -52,7 +52,7 @@ export const memberUpdate = (data) => {
 }
 
 export const bodyDailyList = (data) => {
-  return axios.get(`/api/body/bodyDailys`)
+  return axios.get(`/api/body/bodyDailys?date=` + data)
 }
 
 export const bodyDailyGet = (data) => {
@@ -61,4 +61,8 @@ export const bodyDailyGet = (data) => {
 
 export const bodyDailyAdd = (data) => {
   return axios.post(`/api/body/bodyDaily`, qs.stringify(data))
+}
+
+export const powerStatistic = (data) => {
+  return axios.get(`/api/statistic/power?date=` + data)
 }

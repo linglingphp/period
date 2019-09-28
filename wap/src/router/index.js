@@ -9,6 +9,7 @@ import Member from '@/components/Member/Info'
 import Foot from '@/components/Foot'
 import AddBodyDaily from '@/components/Activity/AddBodyDaily'
 import BodyDaily from '@/components/Activity/BodyDaily'
+import StatisticPower from '@/components/Statistic/Power'
 
 import {
   checkLogin
@@ -51,6 +52,9 @@ export default new Router({
     },
     {
       path: '/activity/bodyDaily', component: AddBodyDaily
+    },
+    {
+      path: '/statistic/power', component: StatisticPower
     },
     {
       path: '/test', component: Member

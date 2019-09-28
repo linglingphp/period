@@ -71,4 +71,10 @@ export default {
   text-align: center;
 }
 * { touch-action: pan-y; } 
+.weui-cell{
+  padding: 0 15px !important;
+}
+.weui-input {
+    height: 3em !important;
+}
 </style>

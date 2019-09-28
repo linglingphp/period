@@ -12,4 +12,6 @@ Route::group('api', function(){
     Route::post('body/bodyDaily', 'member/BodyDailyController/edit');
     Route::get('member', 'member/IndexController/get');
     Route::post('member', 'member/IndexController/edit');
+
+    Route::get( 'statistic/power', 'statistic/IndexController/getPowerData');
 })->pattern(['id' => '\d+'])->middleware('Check');

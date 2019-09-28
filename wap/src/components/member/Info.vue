@@ -7,15 +7,19 @@
         <selector v-model="loginForm.sex" title="性别" :options="plainList" ></selector>
         <x-number title="生日" v-model="loginForm.age"></x-number>
       </group>
-      <x-button type="primary" class="@button-global-border-radius" v-on:click.native="submitData">完善信息</x-button>
-      <x-button type="primary" class="@button-default-bg-color" v-on:click.native="clearData">退出登录</x-button>
+      <box gap="10px 10px">
+        <divider></divider>
+        <x-button type="primary" plain class="@button-global-border-radius" v-on:click.native="submitData">完善信息</x-button>
+        <divider></divider>
+        <x-button type="default" plain class="@button-default-bg-color" v-on:click.native="clearData">退出登录</x-button>
+       </box>
     </div>
     <Foot></Foot>
   </div>
 </template>
 
 <script>
-import { Selector, XInput, XNumber, Radio, XButton } from 'vux'
+import { Selector, Divider, XInput, XNumber, Radio, XButton } from 'vux'
 import Foot from '@/components/Foot'
 import {
   memberGet,
@@ -25,6 +29,7 @@ export default {
   name: 'member',
   components: {
     Selector,
+    Divider,
     XInput,
     XNumber,
     Radio,

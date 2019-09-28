@@ -1,13 +1,19 @@
 <template>
   <div class="hello">
     <group :title="msg" class="form">
-        <calendar title="日期" v-model="loginForm.date" @click.native="onChange" show-popup-header></calendar>
+        <calendar title="日期" v-model="loginForm.date" @click.native="onChange" ></calendar>
         <x-input title="体重" v-model="loginForm.weight" placeholder="你真的不重呢"></x-input>
-        <x-input title="精力" v-model="loginForm.spirit" placeholder="给你的状态打个分吧"></x-input>
-        <x-input title="体力" v-model="loginForm.power" placeholder="感觉今天体力如何呢"></x-input>
+        <cell title="精力">
+          <inline-x-number style="display:block;" v-model="loginForm.spirit" :min="70" :step="5" width="50px" button-style="round"></inline-x-number>
+        </cell>
+        <cell title="体力">
+          <inline-x-number style="display:block;" v-model="loginForm.power" :min="70" :step="5" width="50px" button-style="round"></inline-x-number>
+        </cell>
+        <!-- <x-input title="精力" v-model="loginForm.spirit" placeholder="给你的状态打个分吧"></x-input>
+        <x-input title="体力" v-model="loginForm.power" placeholder="感觉今天体力如何呢"></x-input> -->
         <x-switch title="今天美么" v-model="loginForm.is_beauty"></x-switch>
         <cell title="饮水量">
-          <inline-x-number style="display:block;" v-model="loginForm.water" :min="1000" :step="100" width="50px" button-style="round"></inline-x-number>
+          <inline-x-number style="display:block;" v-model="loginForm.water" :min="1000" :step="500" width="50px" button-style="round"></inline-x-number>
         </cell>
         <x-input title="食物" v-model="loginForm.food" placeholder="要少吃哦"></x-input>
         <x-switch title="学习" v-model="loginForm.is_study"></x-switch>
@@ -84,8 +90,8 @@ export default {
         is_exercise: this.loginForm.is_exercise,
         is_pimple: this.loginForm.is_pimple,
         is_period: this.loginForm.is_period,
-        is_study: this.loginForm.is_study, 
-        is_beauty: this.loginForm.is_beauty, 
+        is_study: this.loginForm.is_study,
+        is_beauty: this.loginForm.is_beauty,
         exercise: this.loginForm.exercise,
         item: this.loginForm.item,
         food: this.loginForm.food

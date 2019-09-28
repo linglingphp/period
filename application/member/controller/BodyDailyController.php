@@ -12,11 +12,18 @@ class BodyDailyController extends BaseController
     
     public function list()
     {
+        $startDay = Request::param( 'date');
+        $endDay = date("Y-m-d", strtotime(" $startDay +1 month"));
         $where = [
             'member_id' => $this->member_id,
         ];
-        $bodydaily = BodyDaily::where($where)->order('date', 'desc')->select()->toArray();
-        
+        $bodydaily = BodyDaily::where($where)
+                    ->whereTime( 'date', '>=', $startDay)
+                    -> whereTime('date', '<', $endDay)
+                    ->order('date', 'desc')
+                    ->select()
+                    ->toArray();
+        // echo BodyDaily::getLastSql();die;
         return renderData(0, $bodydaily??[]);
     
     }
