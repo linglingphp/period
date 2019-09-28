@@ -9,9 +9,8 @@
       </group>
       <box gap="10px 10px">
         <divider></divider>
-        <x-button type="primary" plain class="@button-global-border-radius" v-on:click.native="submitData">完善信息</x-button>
-        <divider></divider>
-        <x-button type="default" plain class="@button-default-bg-color" v-on:click.native="clearData">退出登录</x-button>
+        <el-button type="success" round  v-on:click.native="submitData" class="a-button1">完善信息</el-button>
+        <el-button round  v-on:click.native="clearData" class="a-button1">退出登录</el-button>
        </box>
     </div>
     <Foot></Foot>
@@ -65,7 +64,7 @@ export default {
         age: this.loginForm.age,
         sex: this.loginForm.sex
       }).then((response) => {
-        this.linkTo()
+        // this.linkTo()
       }).catch((error) => {
         console.log(error)
       })
@@ -98,5 +97,10 @@ li {
 }
 a {
   color: #42b983;
+}
+.a-button1 {
+    width: 90%;
+    margin: 2% 5%;
+    display: block;
 }
 </style>
