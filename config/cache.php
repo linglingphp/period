@@ -25,7 +25,8 @@ return [
     // 驱动方式
     'type'   => 'complex',
     // 缓存保存目录
-    'path'   => '',
+    // 'path'   => '',
+    // 'path'  =>  '../runtime/cache/',
     // 缓存前缀
     'prefix' => '',
     // 缓存有效期 0表示永久缓存
